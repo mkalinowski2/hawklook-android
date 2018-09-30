@@ -1,0 +1,13 @@
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingVersion"
+    package="com.fewbits.hawklook.common">
+
+  <uses-permission android:name="android.permission.INTERNET"/>
+  <application
+      android:icon="@mipmap/hlk_common_ic_launcher"
+      android:roundIcon="@mipmap/hlk_common_ic_launcher_round"
+      android:label="@string/hlk_common_app_name">
+  </application>
+</manifest>

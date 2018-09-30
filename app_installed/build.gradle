@@ -1,0 +1,57 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply from: "$rootDir/android_shared.gradle"
+apply from: "$rootDir/kotlin_shared.gradle"
+apply from: "$rootDir/android_ui_testing.gradle"
+
+android {
+    defaultConfig {
+        applicationId "com.fewbits.hawklook"
+        proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        testProguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguardTest-rules.pro'
+    }
+
+    buildTypes {
+        rel {
+            signingConfig android.signingConfigs.release_signing_config
+            debuggable false
+            minifyEnabled true
+            shrinkResources true
+        }
+        qa {
+            initWith rel
+            signingConfig android.signingConfigs.debug_signing_config
+            applicationIdSuffix ".qa"
+        }
+        dev {
+            initWith qa
+            signingConfig android.signingConfigs.debug_signing_config
+            debuggable true
+            minifyEnabled false
+            shrinkResources false
+            applicationIdSuffix ".dev"
+        }
+    }
+
+    lintOptions {
+        checkDependencies true
+        ignoreTestSources true
+        abortOnError true
+        absolutePaths false
+        warningsAsErrors true
+        lintConfig file("$rootDir/modules_infra/infra_static_analysis/lint.xml")
+    }
+}
+
+dependencies {
+    implementation project(':feature_onboarding')
+    implementation project(':lib_common')
+}
+
+android.applicationVariants.all { variant ->
+    variant.outputs.all {
+        def finalName = "hawk_look_${variant.name}_v${variant.versionName}.apk"
+        outputFileName = finalName
+    }
+}
