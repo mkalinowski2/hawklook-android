@@ -1,0 +1,13 @@
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingVersion"
+    package="${PACKAGE_NAME}.common">
+
+  <uses-permission android:name="android.permission.INTERNET"/>
+  <application
+      android:icon="@mipmap/${APP_PREFIX}_common_ic_launcher"
+      android:roundIcon="@mipmap/${APP_PREFIX}_common_ic_launcher_round"
+      android:label="@string/${APP_PREFIX}_common_app_name">
+  </application>
+</manifest>

@@ -1,0 +1,30 @@
+buildscript {
+    apply from: 'dependencies.gradle'
+    repositories {
+        google()
+        jcenter()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+        // For Spoon snapshot, until 2.0.0 is released
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+    }
+    dependencies {
+        classpath plgns.android_gradle_plugin
+        classpath plgns.kotlin_gradle_plugin
+        classpath plgns.android_junit5_plugin
+        classpath plgns.ui_spoon_plugin
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven { url "https://jitpack.io" }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

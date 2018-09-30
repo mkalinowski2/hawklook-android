@@ -1,0 +1,41 @@
+// App modules
+// - app_installed is a regular Gradle Android Application module. Builds to APK. Contains all the features of the app
+// - app_instant is a regular Gradle Android Instant Application module. Builds to ZIP. Contains instant apps APKs
+include ':app_installed',
+        ':app_instant',
+
+// Libs
+// - regular Gradle Android Library modules
+// - dependencies to other libs are allowed
+// - provide generic code to implement particular features
+        ':lib_common',
+        ':lib_domain',
+
+// Features
+// - regular Gradle Android Library modules
+// - contains all the code related to the particular feature
+// - no dependencies between each other are allowed
+// - only dependencies to libs are allowed
+        ':feature_onboarding',
+
+// Instant
+// - all rules from features
+// - regular Gradle Android Instant App Feature modules
+// - if there's a dependency to the same lib in more than one instant, it has to be specified in instant_base module
+        ':instant_base',
+
+// Infra
+// - all the code & tools which don't come into the production app
+// - no other modules should depend on in
+        ':infra_detekt_plugin',
+        ':infra_static_analysis'
+
+project(':lib_common').projectDir = file('modules_lib/lib_common')
+project(':lib_domain').projectDir = file('modules_lib/lib_domain')
+
+project(':feature_onboarding').projectDir = file('modules_feature/feature_onboarding')
+
+project(':instant_base').projectDir = file('modules_instant/instant_base')
+
+project(':infra_detekt_plugin').projectDir = file('modules_infra/infra_detekt_plugin')
+project(':infra_static_analysis').projectDir = file('modules_infra/infra_static_analysis')

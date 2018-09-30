@@ -1,0 +1,10 @@
+apply plugin: "com.jaredsburrows.spoon"
+
+android {
+    testBuildType "qa"
+}
+
+dependencies {
+    androidTestImplementation tests.ui_rules
+    androidTestImplementation tests.espresso
+}

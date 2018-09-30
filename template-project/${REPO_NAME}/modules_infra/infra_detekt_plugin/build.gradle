@@ -1,0 +1,9 @@
+apply plugin: 'kotlin'
+
+version "1.0.0"
+
+dependencies {
+    implementation tests.detekt_api
+    implementation tests.kotlin_reflect
+    implementation tests.kotlin_script_runtime
+}

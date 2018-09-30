@@ -1,0 +1,73 @@
+android {
+    compileSdkVersion config.compile_sdk
+    buildToolsVersion config.build_tools
+
+    defaultConfig {
+        minSdkVersion config.min_sdk
+        targetSdkVersion config.target_sdk
+        versionCode config.version_code
+        versionName config.version_name
+        buildConfigField "String", "API_VERSION", "\"${config.api_version}\""
+    }
+
+    signingConfigs {
+        debug_signing_config {
+            storeFile file("$rootProject.rootDir/mob-tools/keys/android/debug.keystore")
+            keyAlias "app-key-debug"
+            storePassword "appmobile"
+            keyPassword "appmobile"
+        }
+        release_signing_config {
+            storeFile file("$rootProject.rootDir/mob-tools/keys/android/release.keystore")
+            keyAlias "app-key-release"
+            storePassword project.properties['storePassword']
+            keyPassword project.properties['keyPassword']
+        }
+    }
+
+    buildTypes {
+        rel {
+            signingConfig android.signingConfigs.release_signing_config
+        }
+        qa {
+            initWith rel
+            signingConfig android.signingConfigs.debug_signing_config
+        }
+        dev {
+            initWith qa
+            debuggable true
+            signingConfig android.signingConfigs.debug_signing_config
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    android {
+        sourceSets {
+            dev {
+                java.srcDirs += "src/dev_qa/java"
+            }
+            qa {
+                java.srcDirs += "src/dev_qa/java"
+            }
+        }
+    }
+}
+
+android.variantFilter { variant ->
+    def shouldIgnoreVariant = ['debug', 'release'].contains(variant.buildType.name)
+    variant.setIgnore(shouldIgnoreVariant)
+}
+
+configurations.all {
+    resolutionStrategy {
+        eachDependency { DependencyResolveDetails details ->
+            if (dependencyVersionResolverMap.containsKey(details.requested.group)) {
+                details.useVersion dependencyVersionResolverMap.get(details.requested.group)
+            }
+        }
+    }
+}

@@ -1,0 +1,3 @@
+<resources>
+  <string name="${APP_PREFIX}_common_app_name">${APP_NAME}</string>
+</resources>

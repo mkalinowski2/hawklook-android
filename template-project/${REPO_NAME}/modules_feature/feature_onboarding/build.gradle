@@ -1,0 +1,10 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply from: "$rootDir/android_shared.gradle"
+apply from: "$rootDir/kotlin_shared.gradle"
+apply from: "$rootDir/android_testing.gradle"
+
+dependencies {
+    implementation project(':lib_common')
+}

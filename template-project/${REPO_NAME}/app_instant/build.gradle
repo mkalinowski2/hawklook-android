@@ -1,0 +1,6 @@
+apply plugin: 'com.android.instantapp'
+apply from: "$rootDir/android_shared.gradle"
+
+dependencies {
+    implementation project(':instant_base')
+}

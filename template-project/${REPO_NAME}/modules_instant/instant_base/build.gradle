@@ -1,0 +1,13 @@
+apply plugin: 'com.android.feature'
+apply from: "$rootDir/android_shared.gradle"
+apply from: "$rootDir/kotlin_shared.gradle"
+apply from: "$rootDir/android_testing.gradle"
+
+android {
+    baseFeature true
+}
+
+dependencies {
+    api project(':lib_common')
+    application project(':app_installed')
+}

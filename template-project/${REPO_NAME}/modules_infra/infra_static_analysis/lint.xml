@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+  <issue id="ObjectAnimatorBinding" severity="error"/>
+  <issue id="ScrollViewSize" severity="error"/>
+  <issue id="HandlerLeak" severity="error"/>
+  <issue id="UnsafeProtectedBroadcastReceiver" severity="error"/>
+  <issue id="SpUsage" severity="error"/>
+  <issue id="NestedWeights" severity="error"/>
+  <issue id="UselessLeaf" severity="error"/>
+  <issue id="UnusedNamespace" severity="error"/>
+  <issue id="HardcodedText" severity="error"/>
+
+  <!-- Disabled by default but enabled for this project -->
+  <issue id="KotlinPropertyAccess" severity="error"/>
+  <issue id="LambdaLast" severity="error"/>
+  <issue id="NegativeMargin" severity="error"/>
+  <issue id="NoHardKeywords" severity="error"/>
+  <issue id="Registered" severity="error"/>
+  <issue id="RequiredSize" severity="error"/>
+
+  <!--
+    SECTION: Ignored
+  -->
+  <!--
+    Conflicts with Timber:
+    "timber-4.7.0.aar/.../lint.jar: Lint found an issue registry (timber.lint.TimberIssueRegistry) which is older than the current API level; these checks may not work correctly."
+  -->
+  <issue id="ObsoleteLintCustomCheck" severity="ignore"/>
+
+  <!--
+    Doesn't work with Kotlin synthetic properties
+  -->
+  <issue id="UnusedIds" severity="ignore"/>
+
+  <!--
+    Untill we support it, there's no need to check if it's missing in every EditText
+  -->
+  <issue id="Autofill" severity="ignore"/>
+
+  <!--
+    Too many complaints about overriding background which is set in Theme.
+    We could possibly remove background from theme and set it on every root layout, but it's such a big deal nowadays to spend time on it.
+  -->
+  <issue id="Overdraw" severity="ignore"/>
+
+  <!--
+    Using Kotlin extensions' @Parcelize makes Lint complaining:
+    "This class implements Parcelable but does not provide a CREATOR field"
+
+    Hopefully, one day it would be fixed. Currently, it works in AS but fails in Gradle so needs to be ignored.
+    See: https://youtrack.jetbrains.com/issue/KT-19300#comment=27-2799325
+  -->
+  <issue id="ParcelCreator" severity="ignore"/>
+
+  <!--
+    Causes Lint failue
+  -->
+  <issue id="WrongThreadInterprocedural" severity="ignore"/>
+
+  <!--
+    This check picks up english spelling mistakes in polish text.
+  -->
+  <issue id="Typos" severity="ignore"/>
+
+  <!--
+    We don't want to optimize the vector loading time at this moment
+  -->
+  <issue id="VectorPath" severity="ignore"/>
+</lint>

@@ -1,0 +1,6 @@
+dependencies {
+    testImplementation tests.junit
+    testImplementation tests.kotlin_reflect
+    testImplementation tests.kluent_android
+    testImplementation tests.mockk
+}

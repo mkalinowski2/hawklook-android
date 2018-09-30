@@ -1,0 +1,61 @@
+apply plugin: 'com.android.library'
+apply from: "$rootDir/android_shared.gradle"
+apply from: "$rootDir/kotlin_shared.gradle"
+apply from: "$rootDir/android_testing.gradle"
+
+
+dependencies {
+
+    //Kotlin
+    api deps.kotlin_stdlib
+
+    //Google Support
+    api deps.support.app_compat
+    api deps.support.exifinterface
+    api deps.support.recyclerview
+    api deps.support.cardview
+    api deps.support.design
+    api deps.support.vector_drawables
+    api deps.support.animated_vector_drawables
+    api deps.constraint_layout
+    api deps.instant_apps
+    api deps.android_ktx
+
+    //Dependency Injection
+    api deps.koin.android
+    api deps.koin.android_architecture
+
+    //ReactiveX
+    api deps.rxjava2
+    api deps.autodispose.kotlin
+    api deps.autodispose.android_archcomponents
+    api deps.rxbindings.kotlin
+    api deps.rxbindings.v4
+    api deps.rxbindings.v7
+    api deps.rxbindings.recyclerview
+
+    //Architecture
+    api deps.lifecycle.extensions
+    kapt deps.lifecycle.compiler
+
+    //Utils
+    api deps.timber
+    implementation deps.rxpermissions
+    implementation deps.android_devices_names
+
+    //UI
+    implementation deps.gravity_snap_helper
+    implementation deps.recycler_view_divider
+    api deps.bottom_navigation_ex
+    api deps.badge_view
+    implementation deps.glide
+    implementation deps.material_dialogs
+
+    //Navigation
+    api deps.fragmentargs.annotation
+    kapt deps.fragmentargs.processor
+    kapt deps.glide_annotation_processor
+
+    //Modules
+    api project(':lib_domain')
+}
