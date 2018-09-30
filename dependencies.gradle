@@ -67,9 +67,8 @@ versions.zxing_android_embedded = "3.6.0"      //https://github.com/journeyapps/
 //============= BUILD CONFIG =================
 //Build config
 ext.config = [:]
-config.version_name = "2.1.4"
-config.version_code = 344
-// TODO [jan.gonera 14/07/2018] correctly handle api version updates
+config.version_name = "0.0.1"
+config.version_code = 1
 config.api_version = 1
 config.min_sdk = 21
 config.target_sdk = 28
